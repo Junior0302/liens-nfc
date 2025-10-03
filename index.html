@@ -3,23 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mes liens NFC</title>
+  <title>Carte NFC - Junior</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#f8f8f8; margin:0; padding:20px; }
-    h1 { text-align:center; color:#333; }
-    .links { max-width:600px; margin:30px auto; display:flex; flex-direction:column; gap:15px; }
-    a { display:block; padding:15px; background:white; border-radius:12px; text-decoration:none;
-        box-shadow:0 2px 6px rgba(0,0,0,0.1); font-size:1.1rem; color:#0077cc; text-align:center; }
-    a:hover { background:#f0f0f0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(135deg,#1e3c72,#2a5298);
+      margin:0;
+      padding:0;
+      color:white;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      min-height:100vh;
+      justify-content:center;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      box-shadow:0 4px 15px rgba(0,0,0,0.3);
+      max-width: 350px;
+      width: 90%;
+      text-align: center;
+    }
+    h1 {
+      margin:0 0 10px;
+      font-size:1.6rem;
+    }
+    p {
+      margin:0 0 20px;
+      font-size:1rem;
+      color:#ddd;
+    }
+    .links {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    a {
+      display:block;
+      text-decoration:none;
+      padding:14px;
+      border-radius:12px;
+      font-size:1.1rem;
+      font-weight:600;
+      transition:all .2s;
+    }
+    a.facebook { background:#1877f2; color:white; }
+    a.instagram { background:#e4405f; color:white; }
+    a.whatsapp { background:#25d366; color:white; }
+    a.website { background:#00bcd4; color:white; }
+    a.email { background:#ff9800; color:white; }
+    a:hover { opacity:0.85; transform: translateY(-2px); }
+    footer {
+      margin-top:20px;
+      font-size:0.8rem;
+      color:#ccc;
+    }
   </style>
 </head>
 <body>
-  <h1>Mes liens</h1>
-  <div class="links">
-    <a href="https://example.com" target="_blank">🌐 Mon site web</a>
-    <a href="https://facebook.com" target="_blank">📘 Facebook</a>
-    <a href="https://instagram.com" target="_blank">📸 Instagram</a>
-    <a href="mailto:tonmail@example.com">📧 Me contacter</a>
+  <div class="card">
+    <h1>👋 Junior</h1>
+    <p>Retrouvez-moi sur mes réseaux :</p>
+    <div class="links">
+      <a href="https://facebook.com/TON-PROFIL" target="_blank" class="facebook">📘 Facebook</a>
+      <a href="https://instagram.com/TON-PROFIL" target="_blank" class="instagram">📸 Instagram</a>
+      <a href="https://wa.me/TON-NUMERO" target="_blank" class="whatsapp">💬 WhatsApp</a>
+      <a href="https://tonsite.com" target="_blank" class="website">🌐 Mon site</a>
+      <a href="mailto:tonmail@example.com" class="email">📧 Me contacter</a>
+    </div>
+    <footer>
+      Carte NFC générée avec ❤️ – Junior
+    </footer>
   </div>
 </body>
 </html>
