@@ -1,0 +1,15 @@
+# Environnements et secrets
+.env
+.env.*
+
+# Copie locale des documents des personnes
+liens-nfc/personnes/*/documents/
+liens-nfc/personnes/*/docs/
+
+# Fichiers temporaires / OS
+Thumbs.db
+*.log
+*.tmp
+
+# PHP server cache
+.phpunit.result.cache
