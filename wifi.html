@@ -1,40 +1,79 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Famille Tamba  WiFi</title>
+  <title>Famille Tamba — Code Wi‑Fi</title>
   <style>
-    body { margin:0; font-family: system-ui, sans-serif; color:#fff; background:#0b0b0f; }
-    .container { width:min(860px,92%); margin:40px auto; }
-    .top { display:flex; justify-content:space-between; align-items:center; color:#9aa0a6; }
-    .card { background:#121219; border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:18px; margin-top:16px; }
-    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    @media (max-width:760px){ .row{ grid-template-columns:1fr; } }
-    .label { color:#9aa0a6; margin:0; }
-    .value { font-weight:700; margin:4px 0 0; }
-    .back { display:inline-block; margin-top:18px; color:#fff; text-decoration:none; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); padding:10px 14px; border-radius:10px; }
+    :root { --bg:#0b0c10; --panel:#111318; --text:#e6e6e6; --muted:#b7b7b7; --accent:#7c3aed; --accent2:#06b6d4; --shadow:0 10px 30px rgba(0,0,0,.35) }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial}
+    header{position:sticky;top:0;background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)), var(--panel);border-bottom:1px solid rgba(255,255,255,.06);padding:12px 16px;display:flex;align-items:center;gap:10px;z-index:20}
+    header svg{width:20px;height:20px}
+    .back{display:inline-flex;align-items:center;gap:.5rem;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.5rem .7rem;background:rgba(124,58,237,.15);transition:transform .15s ease}
+    .back:hover{transform:translateY(-1px)}
+    main{max-width:900px;margin:0 auto;padding:20px 16px;animation:rise .5s ease both}
+    .card{background:var(--panel);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+    .title{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+    .title svg{width:26px;height:26px}
+    .note{color:var(--muted);margin:0 0 12px}
+    .grid{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:14px}
+    @media (max-width:780px){.grid{grid-template-columns:1fr}}
+    .field{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px}
+    .label{color:var(--muted);font-size:.9rem;margin-bottom:6px}
+    .value{font-weight:600}
+    .qr{display:flex;align-items:center;justify-content:center;padding:16px;border-radius:12px;border:1px dashed rgba(255,255,255,.15)}
+    .hint{color:var(--muted);font-size:.9rem;margin-top:10px}
+    @keyframes rise{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="top">
-      <h1 style="margin:0; font-size:1.2rem;">Code WiFi maison</h1>
-      <div>Créé par TNS Digitale France</div>
+  <header>
+    <a class="back" href="index.html" aria-label="Retour à l’accueil">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" /><path d="M21 12H9" />
+      </svg>
+      Retour
+    </a>
+    <div style="margin-left:auto;color:#fff;display:flex;align-items:center;gap:.5rem">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12a7 7 0 0 1 14 0" /><path d="M8.5 15.5a3.5 3.5 0 0 1 7 0" /><path d="M12 18h.01" /></svg>
+      Code Wi‑Fi
     </div>
+  </header>
+
+  <main>
     <div class="card">
-      <div class="row">
-        <div>
-          <p class="label">Nom du réseau (SSID)</p>
-          <p class="value">MaisonTamba</p>
+      <h2 class="title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12a7 7 0 0 1 14 0" /><path d="M8.5 15.5a3.5 3.5 0 0 1 7 0" /><path d="M12 18h.01" /></svg>
+        Détails du réseau
+      </h2>
+      <p class="note">Modifiez ces valeurs selon votre box internet.</p>
+      <div class="grid">
+        <div class="field">
+          <div class="label">Nom du réseau (SSID)</div>
+          <div class="value">Tamba‑Home‑WiFi</div>
         </div>
-        <div>
-          <p class="label">Mot de passe</p>
-          <p class="value"></p>
+        <div class="field">
+          <div class="label">Mot de passe</div>
+          <div class="value">famille‑2025‑secure</div>
+        </div>
+        <div class="field">
+          <div class="label">Sécurité</div>
+          <div class="value">WPA2</div>
+        </div>
+        <div class="field">
+          <div class="label">Canal</div>
+          <div class="value">Auto</div>
         </div>
       </div>
+      <div class="qr" aria-label="QR‑code Wi‑Fi">
+        <svg viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+          <path d="M14 14h7v7h-7z" />
+        </svg>
+      </div>
+      <p class="hint">Astuce: remplacez ces informations par vos données réelles. Vous pouvez générer un QR‑code Wi‑Fi en ligne et l’ajouter ici comme image.</p>
     </div>
-    <a class="back" href="index.html"> Retour</a>
-  </div>
+  </main>
 </body>
 </html>

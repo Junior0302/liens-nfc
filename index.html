@@ -1,101 +1,270 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Famille Tamba  Accueil</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Famille Tamba — Accueil</title>
   <style>
-    :root { --bg:#0b0b0f; --panel:#121219; --panel-hover:#161624; --text:#ffffff; --muted:#9aa0a6; --accent:#4f46e5; --accent-2:#06b6d4; --radius:16px; }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { margin:0; padding:0; color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, "Inter", sans-serif; background:
-      radial-gradient(60% 60% at 20% 10%, rgba(79,70,229,0.15) 0%, transparent 60%),
-      radial-gradient(60% 60% at 80% 90%, rgba(6,182,212,0.18) 0%, transparent 60%), var(--bg); }
-    .topbar { position: fixed; top:12px; left:50%; transform: translateX(-50%); background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); backdrop-filter: blur(6px); padding:6px 14px; border-radius:999px; font-size:13px; letter-spacing:.2px; color:var(--muted); }
-    .loader { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; }
-    .loader-card { width:min(720px,92%); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border:1px solid rgba(255,255,255,0.14); border-radius:var(--radius); box-shadow:0 30px 80px rgba(0,0,0,0.35); padding:28px 24px 24px; animation: float 10s ease-in-out infinite; }
-    .title { font-weight:700; font-size:clamp(1.5rem,3.2vw,2rem); margin:0 0 8px; }
-    .subtitle { color:var(--muted); margin:0 0 18px; }
-    .spinner { width:48px; height:48px; margin:14px auto 22px; border-radius:50%; border:3px solid rgba(255,255,255,0.15); border-top-color:var(--accent); animation: spin 1s linear infinite; }
-    .enter-btn { display:inline-flex; gap:10px; align-items:center; justify-content:center; padding:12px 18px; border-radius:12px; border:1px solid rgba(255,255,255,0.18); background: linear-gradient(180deg, rgba(99,102,241,0.35), rgba(99,102,241,0.18)); color:white; font-weight:600; cursor:pointer; transition: transform .18s ease, box-shadow .18s ease, opacity .18s; }
-    .enter-btn:hover { transform: translateY(-2px); box-shadow:0 12px 30px rgba(79,70,229,0.35); }
-    .app { display:none; min-height:100vh; }
-    .container { width:min(1080px,92%); margin:84px auto; }
-    .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-    @media (max-width:760px){ .grid { grid-template-columns:1fr; } }
-    .card { background:var(--panel); border:1px solid rgba(255,255,255,0.10); border-radius:var(--radius); padding:18px; display:flex; flex-direction:column; gap:12px; transition: background .2s ease, transform .2s ease, border-color .2s ease; }
-    .card:hover { background:var(--panel-hover); transform: translateY(-2px); border-color: rgba(255,255,255,0.16); }
-    .card-header { display:flex; align-items:center; gap:12px; }
-    .card h3 { margin:0; font-size:1.05rem; }
-    .card p { margin:0; color:var(--muted); }
-    .actions { display:flex; justify-content:flex-end; }
-    .btn { appearance:none; border:none; text-decoration:none; background: rgba(255,255,255,0.08); color:white; padding:10px 14px; border-radius:10px; font-weight:600; border:1px solid rgba(255,255,255,0.16); transition: transform .18s ease, background .18s ease; }
-    .btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
-    .icon { width:26px; height:26px; color:var(--accent-2); }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-    @media (prefers-reduced-motion: reduce){ .spinner, .loader-card { animation:none; } }
+    :root {
+      --bg: #0b0c10;
+      --panel: #111318;
+      --text: #e6e6e6;
+      --muted: #b7b7b7;
+      --accent: #7c3aed; /* violet */
+      --accent-2: #06b6d4; /* cyan */
+      --success: #22c55e;
+      --danger: #ef4444;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Bandeau auteur */
+    .brand {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: center;
+      gap: .6rem;
+      padding: .6rem .8rem;
+      background: linear-gradient(90deg, rgba(124,58,237,.15), rgba(6,182,212,.15));
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      backdrop-filter: blur(6px);
+      z-index: 50;
+      font-size: .95rem;
+    }
+    .brand svg { width: 18px; height: 18px; }
+
+    /* Préchargeur séparé */
+    #loader {
+      position: fixed; inset: 0; z-index: 100;
+      display: grid; place-items: center;
+      background: radial-gradient(1200px 1200px at 50% 30%, rgba(124,58,237,.08), transparent 60%),
+                  radial-gradient(900px 900px at 10% 90%, rgba(6,182,212,.08), transparent 55%),
+                  var(--bg);
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    #loader.hide { opacity: 0; visibility: hidden; }
+    .spinner {
+      width: 88px; height: 88px; border-radius: 50%;
+      border: 4px solid rgba(255,255,255,.15);
+      border-top-color: var(--accent);
+      border-right-color: var(--accent-2);
+      animation: spin 1s linear infinite;
+      box-shadow: var(--shadow);
+    }
+    .loader-text { margin-top: 1rem; color: var(--muted); letter-spacing: .08em; font-size: .9rem }
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    /* Accueil (bienvenue) */
+    #welcome {
+      min-height: 100vh;
+      display: none;
+      padding-top: 72px; /* place pour le bandeau */
+    }
+    #welcome.show { display: grid; place-items: center; }
+    .hero {
+      text-align: center;
+      max-width: 800px;
+      padding: 2.4rem 1.6rem;
+      animation: fade-in .6s ease both, rise .6s ease both;
+    }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 .6rem }
+    .hero p { color: var(--muted); margin: 0 0 1.8rem }
+    .enter-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .9rem 1.2rem; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff; text-decoration: none; font-weight: 600;
+      border: none; cursor: pointer; box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .enter-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(124,58,237,.25) }
+    .enter-btn svg { width: 20px; height: 20px }
+
+    /* Dashboard */
+    #dashboard { display: none; padding: 92px 16px 28px; max-width: 1100px; margin: 0 auto }
+    #dashboard.show { display: block; animation: fade-in .4s ease both }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px }
+    @media (max-width: 780px){ .grid { grid-template-columns: 1fr } }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)), var(--panel);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px; padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column; gap: 12px;
+      animation: rise .5s ease both;
+    }
+    .card-header { display: flex; align-items: center; gap: 12px }
+    .card svg { width: 28px; height: 28px }
+    .card h3 { margin: 0; font-size: 1.1rem }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem }
+    .actions { display: flex; gap: 10px; margin-top: 8px }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .65rem .9rem; border-radius: 12px; text-decoration: none;
+      font-weight: 600; border: 1px solid rgba(255,255,255,.08);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn svg { width: 18px; height: 18px }
+    .btn.view { background: rgba(124,58,237,.15); color: #fff }
+    .btn.view:hover { transform: translateY(-1px); background: rgba(124,58,237,.25); border-color: rgba(124,58,237,.45) }
+
+    @keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+    @keyframes rise { from { transform: translateY(8px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
   </style>
 </head>
 <body>
-  <div class="topbar">Créé par TNS Digitale France</div>
-  <section class="loader" id="loader">
-    <div class="loader-card">
-      <h1 class="title">Bienvenue à toute la famille Tamba </h1>
-      <p class="subtitle">Chargement de votre espace puis cliquez sur Entrer</p>
+  <div class="brand" aria-label="Créé par TNS Digitale France">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" />
+    </svg>
+    <span>Créé par TNS Digitale France</span>
+  </div>
+
+  <!-- Écran de chargement séparé -->
+  <div id="loader" role="status" aria-live="polite">
+    <div>
       <div class="spinner" aria-hidden="true"></div>
-      <button class="enter-btn" id="enterBtn" aria-label="Entrer">Entrer</button>
+      <div class="loader-text">Chargement…</div>
+    </div>
+  </div>
+
+  <!-- Accueil Bienvenue -->
+  <section id="welcome" aria-label="Bienvenue Famille Tamba">
+    <div class="hero">
+      <h1>Bienvenue, Famille Tamba</h1>
+      <p>Accédez à vos espaces: Wi‑Fi, documents, courses et étude. Design sombre, moderne et animé.</p>
+      <button id="enterBtn" class="enter-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14" /><path d="M5 12h14" />
+        </svg>
+        Entrer
+      </button>
     </div>
   </section>
-  <main class="app" id="app">
-    <div class="container">
-      <div class="grid">
-        <article class="card">
-          <div class="card-header">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 9.5a12 12 0 0 1 18 0"/><path d="M6.5 12.5a8 8 0 0 1 11 0"/><path d="M10.5 15.5a3 3 0 0 1 4 0"/><circle cx="12" cy="18.5" r="1"/></svg>
-            <h3>Code WiFi maison</h3>
-          </div>
-          <p>Accédez rapidement au réseau de la maison.</p>
-          <div class="actions"><a class="btn" href="wifi.html">Voir</a></div>
-        </article>
-        <article class="card">
-          <div class="card-header">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h6l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M13 3v6h6"/></svg>
-            <h3>Documents importants</h3>
-          </div>
-          <p>Centralisez les papiers essentiels de la famille.</p>
-          <div class="actions"><a class="btn" href="documents.html">Voir</a></div>
-        </article>
-        <article class="card">
-          <div class="card-header">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="20" r="2"/><circle cx="17" cy="20" r="2"/><path d="M3 5h2l2 10h10l2-7H6"/></svg>
-            <h3>Liste de courses</h3>
-          </div>
-          <p>Préparez et partagez les achats du foyer.</p>
-          <div class="actions"><a class="btn" href="courses.html">Voir</a></div>
-        </article>
-        <article class="card">
-          <div class="card-header">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19h16"/><path d="M8 19V7l4-2 4 2v12"/><path d="M12 9v10"/></svg>
-            <h3>Étude familiale</h3>
-          </div>
-          <p>Organisation des révisions et apprentissages.</p>
-          <div class="actions"><a class="btn" href="etude.html">Voir</a></div>
-        </article>
-      </div>
+
+  <!-- Dashboard -->
+  <main id="dashboard">
+    <div class="grid">
+      <!-- WiFi -->
+      <article class="card">
+        <div class="card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12a7 7 0 0 1 14 0" />
+            <path d="M8.5 15.5a3.5 3.5 0 0 1 7 0" />
+            <path d="M12 18h.01" />
+          </svg>
+          <h3>Code Wi‑Fi</h3>
+        </div>
+        <p>SSID et mot de passe, QR‑code pratique.</p>
+        <div class="actions">
+          <a class="btn view" href="wifi.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            Voir
+          </a>
+        </div>
+      </article>
+
+      <!-- Documents -->
+      <article class="card">
+        <div class="card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <path d="M14 2v6h6" />
+          </svg>
+          <h3>Documents importants</h3>
+        </div>
+        <p>Pièces familiales et fichiers clés bien organisés.</p>
+        <div class="actions">
+          <a class="btn view" href="documents.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            Voir
+          </a>
+        </div>
+      </article>
+
+      <!-- Courses -->
+      <article class="card">
+        <div class="card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="8" cy="21" r="2" />
+            <circle cx="19" cy="21" r="2" />
+            <path d="M2 3h3l3 12h11l3-8H6" />
+          </svg>
+          <h3>Liste de courses</h3>
+        </div>
+        <p>À acheter cette semaine, simple et lisible.</p>
+        <div class="actions">
+          <a class="btn view" href="courses.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            Voir
+          </a>
+        </div>
+      </article>
+
+      <!-- Étude -->
+      <article class="card">
+        <div class="card-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 13a7 7 0 0 1-7 7H7a7 7 0 0 1-7-7V6a4 4 0 0 1 4-4h7a4 4 0 0 1 4 4z" />
+            <path d="M8 6h8v4H8z" />
+          </svg>
+          <h3>Étude de famille</h3>
+        </div>
+        <p>Planning et ressources pour l’apprentissage à la maison.</p>
+        <div class="actions">
+          <a class="btn view" href="etude.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            Voir
+          </a>
+        </div>
+      </article>
     </div>
   </main>
+
   <script>
-    const loader = document.getElementById('loader');
-    const app = document.getElementById('app');
-    const enterBtn = document.getElementById('enterBtn');
-    let revealed = false;
-    setTimeout(() => { if (!revealed) enterBtn.style.opacity = '1'; }, 900);
-    enterBtn.addEventListener('click', () => {
-      revealed = true;
-      loader.style.display = 'none';
-      app.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Séparer net: loader -> accueil; puis bouton "Entrer" -> dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+      const loader = document.getElementById('loader');
+      const welcome = document.getElementById('welcome');
+      const dashboard = document.getElementById('dashboard');
+      const enterBtn = document.getElementById('enterBtn');
+
+      // Affiche l'accueil après un court temps (simulation de chargement)
+      setTimeout(() => {
+        loader.classList.add('hide');
+        welcome.classList.add('show');
+      }, 1200);
+
+      // Passage à la page principale
+      enterBtn.addEventListener('click', () => {
+        welcome.classList.remove('show');
+        welcome.style.display = 'none';
+        dashboard.classList.add('show');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     });
   </script>
 </body>
