@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>École — Dossiers</title>
+  <style>
+    :root{--bg:#0b0f1a;--panel:#111627;--muted:#9aa3b2;--accent:#7c3aed}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:radial-gradient(1200px circle at 80% -10%, rgba(124,58,237,.35), transparent 30%),var(--bg);color:#fff}
+    .wrap{max-width:900px;margin:0 auto;padding:24px}
+    .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .home{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.04);color:#fff;text-decoration:none}
+    .card{border:1px solid rgba(255,255,255,.08);border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), var(--panel);padding:18px}
+    .title{display:flex;align-items:center;gap:.6rem;margin:0 0 8px 0}
+    .note{color:var(--muted);margin:0 0 14px}
+    .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .tile{display:flex;align-items:center;gap:.6rem;padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.03);text-decoration:none;color:#fff}
+    .tile:hover{transform:translateY(-2px)}
+  </style>
+  <link rel="preconnect" href="https://rsms.me" /><link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <h1 style="margin:0">École</h1>
+      <a class="home" href="../documents.html">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 19l-7-7 7-7" /></svg>
+        Accueil Documents
+      </a>
+    </div>
+    <div class="card">
+      <h2 class="title">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12L12 17 2 12l10-5z" /><path d="M12 22v-5" /></svg>
+        À organiser
+      </h2>
+      <p class="note">Ajoutez ici les bulletins, certificats de scolarité, documents d’inscription, etc.</p>
+      <div class="list">
+        <div class="tile"><strong>Bulletins</strong></div>
+        <div class="tile"><strong>Certificats</strong></div>
+        <div class="tile"><strong>Inscriptions</strong></div>
+        <div class="tile"><strong>Notes et devoirs</strong></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

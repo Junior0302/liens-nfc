@@ -44,26 +44,26 @@
     <div class="card">
       <h2 class="title">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /></svg>
-        Dossiers et pièces
+        Organisation des dossiers
       </h2>
-      <p class="note">Ajoutez des liens vers vos documents (Drive, PDF, etc.).</p>
-      <div class="list">
-        <div class="doc">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18" /><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /></svg>
-          <a href="#">Livret de famille.pdf</a>
-        </div>
-        <div class="doc">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18" /><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /></svg>
-          <a href="#">Assurances — contrat.pdf</a>
-        </div>
-        <div class="doc">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18" /><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /></svg>
-          <a href="#">Passeports — scans</a>
-        </div>
-        <div class="doc">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18" /><path d="M6 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" /></svg>
-          <a href="#">Bulletins d’école</a>
-        </div>
+      <p class="note">Choisissez une rubrique. Chaque carte ouvre sa page dédiée.</p>
+      <div class="list" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <a class="doc" href="categories/travail.html" aria-label="Dossier Travail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16v13H4z" /><path d="M16 7V5a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v2" /></svg>
+          <strong>Travail</strong>
+        </a>
+        <a class="doc" href="categories/administration.html" aria-label="Dossier Administration">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v4H3z" /><path d="M3 8h18v12H3z" /></svg>
+          <strong>Administration</strong>
+        </a>
+        <a class="doc" href="categories/ecole.html" aria-label="Dossier École">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12L12 17 2 12l10-5z" /><path d="M12 22v-5" /></svg>
+          <strong>École</strong>
+        </a>
+        <a class="doc" href="categories/identite.html" aria-label="Dossier Identité">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M6 20a6 6 0 0 1 12 0" /></svg>
+          <strong>Identité</strong>
+        </a>
       </div>
     </div>
   </main>
