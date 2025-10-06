@@ -1,0 +1,28 @@
+# Do not include local environment files
+.env
+.env.*
+
+# Exclude local copies of user documents
+personnes/*/documents/
+personnes/*/docs/
+
+# OS and temp files
+Thumbs.db
+*.log
+*.tmp
+
+# Editor/IDE settings and caches
+.DS_Store
+.vscode/
+.idea/
+node_modules/
+
+# Exclude top-level static HTML duplicates (served via GitHub Pages)
+categories/
+personnes/
+qrcode-wifi/
+wifi.html
+index.html
+documents.html
+courses.html
+etude.html
